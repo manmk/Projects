@@ -1,0 +1,45 @@
+File: 1DFEM.py
+sample code in Python solve a Poisson equation (heat equation) in 1D finite element method
+Python code of the of the 1D Poisson's equation using local Shape Functions. First enter numpy * then # and define the problem definition and required parameters and then enter:
+fi0=Dirichlet condition, qL=Neumann condition, Q0=Heat load, km=material
+The next step is to define nodes and elements:
+long=length of domain, nnodes=number of total nodes, nnod=number of nodes for each element, nelems=number of elements, interv=size of each element, xi=zeros(nnodes,float)
+obtaining elementary matrix components
+assembly of global matrix components
+assembly of boundary conditions
+Applying Dirichlet condition (remove the equations related to thr first unknown)
+------------------------
+File: Mesh generation.py
+Mesh generation: A FEniCS program for solving our test problem for the Poisson equation in with the given choices of ΩΩ, uDuD, and ff may look as follows.
+in the world of finite element methods for PDEs, the most fundamental task must be to solve the Poisson equation. solves the following boundary-value problem:
+−∇2u(x)u(x)=f(x),=uD(x),x in Ω,x on ∂Ω.(2.1)(2.2)(2.1)−∇2u(x)=f(x),x in Ω,(2.2)u(x)=uD(x),x on ∂Ω.
+Here, u=u(x)u=u(x) is the unknown function, f=f(x)f=f(x) is a prescribed function, ∇2∇2 is the Laplace operator (often written as ΔΔ), ΩΩ is the spatial domain,
+and ∂Ω∂Ω is the boundary of ΩΩ. The Poisson problem, including both the PDE −∇2u=f−∇2u=f and the boundary condition u=uDu=uD on ∂Ω∂Ω, is an example of a boundary-value problem,
+which must be precisely stated before it makes sense to start solving it with FEniCS.
+In two space dimensions with coordinates xx and yy. 
+This FEniCS program is possible to solve our test problem for the Poisson equation in 2D with given choices Ω, UD and F.
+------------------------
+File: Gauss point.py
+Assembly of the finite element matrix system through gauss quadrature, The steps are as follows:
+  Recursive generation of the Legendre polynomial of order n
+  Derivative of the Legendre polynomials
+  Roots of the polynomial obtained using Newton-Raphson method
+  The polynomials are alternately even and odd functions. So we evaluate only half the number of roots.
+  Weight coefficients
+  The integral value
+  The integrand - change as required
+  Integrating the function
+  
+Order    :  5
+Roots    :  [-0.90617985   -0.53846931    0.            0.53846931    0.90617985]
+Weights  :  [ 0.23692689    0.47862867    0.56888889    0.47862867    0.23692689]
+Integral :  20.0355777184
+------------------------
+File: Solving linear Gaussian.py
+Solving Linear system of equations by using Gaussian algorithm. we should use decomposition to solve linear equations. 
+These codes produces valid solutions, but when our vector changes we have to do all the work again.
+decomposition is faster in those cases and not slower in case you don't have to solve equations with the same matrix twice.
+this solving is to describe how the solutions to a linear system are actually found.
+The fundamental idea is to add multiples of one equation to the others in order to eliminate a variable and to continue this process until only one variable is left.
+Once this final variable is determined, its value is substituted back into the other equations in order to evaluate the remaining unknowns.
+This method, characterized by step‐by‐step elimination of the variables, is called Gaussian elimination.
